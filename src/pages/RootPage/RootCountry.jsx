@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
-import store from "../../components/Country/store";
 const RootCountry = () => {
   useEffect(() => {
     localStorage.getItem("theme") === null
@@ -9,11 +8,11 @@ const RootCountry = () => {
       : localStorage.getItem("theme");
   }, []);
   return (
-    <Provider store={store}>
+    <>
       <main>
         <Outlet></Outlet>
       </main>
-    </Provider>
+    </>
   );
 };
 

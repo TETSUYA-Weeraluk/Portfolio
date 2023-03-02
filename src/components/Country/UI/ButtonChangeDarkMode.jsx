@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosMoon } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { countryAction } from "../store/Country-slice";
+import { countryAction } from "../../../store/Country/CountrySlice";
 
 const ButtonChangeDarkMode = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { cartAction } from "../store/cart-slice";
+import { cartAction } from "../../../store/Appfood/cartSlice";
 
 const CardListMenu = (props) => {
   const dispatch = useDispatch();

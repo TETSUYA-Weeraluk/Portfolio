@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { listMenuAction } from '../store/listMenu-slice'
+import { listMenuAction } from '../../../store/Appfood/listMenuSlice'
 
 const ButtonFilter = () => {
   const dispatch = useDispatch()

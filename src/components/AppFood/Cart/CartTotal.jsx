@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAction } from "../store/cart-slice";
+import { cartAction } from "../../../store/Appfood/cartSlice";
 
 const CartTotal = () => {
   const cartItemData = useSelector((state) => state.cart.items);

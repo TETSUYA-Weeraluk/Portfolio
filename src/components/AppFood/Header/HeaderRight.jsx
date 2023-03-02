@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdCart } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAction } from "../store/cart-slice";
+import { cartAction } from "../../../store/Appfood/cartSlice";
 
 const HeaderRight = () => {
   const dispatch = useDispatch()

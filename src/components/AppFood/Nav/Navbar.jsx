@@ -1,7 +1,7 @@
 import React from 'react'
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
-import { menuAction } from '../store/menu-slice';
+import { menuAction } from '../../../store/Appfood/menuSlice';
 import ListMenu from "./ListMenu";
 
 const Narbar = () => {

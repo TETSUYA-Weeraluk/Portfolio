@@ -2,9 +2,9 @@ import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import burger from "../../../assets/burger.png";
-import { menuAction } from "../store/menu-slice";
 import { BsArrowLeft } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { menuAction } from "../../../store/Appfood/menuSlice";
 
 const HeaderLeft = () => {
   const dispatch = useDispatch();

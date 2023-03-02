@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { menuAction } from '../store/menu-slice'
+import { menuAction } from '../../../store/Appfood/menuSlice'
 
 const OverlayMenu = () => {
   const dispatch = useDispatch()

@@ -1,8 +1,8 @@
 import React from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { countryAction } from "../../../store/Country/CountrySlice";
 import { DarkModeHeader } from "../DarkModeCss";
-import { countryAction } from "../store/Country-slice";
 import CardCountryDetail from "./CardCountryDetail";
 
 const CardCountry = (props) => {

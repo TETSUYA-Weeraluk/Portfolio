@@ -4,7 +4,7 @@ import InputSearchCountry from "./UI/InputSearchCountry";
 import FilterRegion from "./UI/FilterRegion";
 import CardCountry from "./UI/CardCountry";
 import { DarkModeContent } from "./DarkModeCss";
-import { countryAction, fetchCountryData } from "./store/Country-slice";
+import { countryAction, fetchCountryData } from "../../store/Country/CountrySlice";
 
 const CountryList = () => {
   const dispatch = useDispatch();

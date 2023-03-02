@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cookingAnimation from "../../../assets/121841-order-paper-icon.gif";
-import { cartAction } from "../store/cart-slice";
+import { cartAction } from "../../../store/Appfood/cartSlice";
 import ButtonCloseOrder from "./ButtonCloseOrder";
 
 const OrderConfirm = () => {

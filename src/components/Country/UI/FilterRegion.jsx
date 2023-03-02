@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { countryAction } from "../../../store/Country/CountrySlice";
 import { DarkModeHeader } from "../DarkModeCss";
-import { countryAction } from "../store/Country-slice";
 
 const FilterRegion = () => {
   const isDarkMode = useSelector((state) => state.country.isDarkMode);

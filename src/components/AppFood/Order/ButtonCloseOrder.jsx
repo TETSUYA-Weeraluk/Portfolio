@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { cartAction } from "../store/cart-slice";
+import { cartAction } from "../../../store/Appfood/cartSlice";
 
 const ButtonCloseOrder = () => {
     const dispatch = useDispatch()
