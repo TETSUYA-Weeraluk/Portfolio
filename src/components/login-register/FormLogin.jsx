@@ -1,10 +1,24 @@
-import React from "react";
+import React, {  useState } from "react";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../store/LoginRegister/LoginSlice";
 
 const FormLogin = () => {
+
+    const [stateForm , setStateForm] = useState({
+        username : '',
+        password : '',
+    });
+
+    const dispatch = useDispatch();
+ 
+    const changeHandler = (e) => {
+        setStateForm( {...stateForm,[e.target.name] : e.target.value})
+    }
+
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        console.log(e)
+        dispatch(loginAction.submitLogin(stateForm))
     }
   return (
     <>
@@ -16,6 +30,8 @@ const FormLogin = () => {
             type="text"
             placeholder="Username"
             name="username"
+            value={stateForm.username}
+            onChange={changeHandler}
           />
         </div>
         <div className="py-4 flex items-center gap-1 border-b">
@@ -25,6 +41,8 @@ const FormLogin = () => {
             type="password"
             placeholder="Username"
             name="password"
+            value={stateForm.password}
+            onChange={changeHandler}
           />
         </div>
         <button type="submit" className="bg-[#598253] py-2 px-4 rounded-md text-white font-bold ">

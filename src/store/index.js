@@ -3,6 +3,7 @@ import cartSlice from "./Appfood/cartSlice";
 import listMenuSlice from "./Appfood/listMenuSlice";
 import menuSlice from "./Appfood/menuSlice";
 import countrySlice from "./Country/CountrySlice";
+import loginSlice from "./LoginRegister/LoginSlice";
 
 const store = configureStore({
   reducer: 
@@ -11,6 +12,7 @@ const store = configureStore({
       cart: cartSlice.reducer,
       listMenu: listMenuSlice.reducer,
       country: countrySlice.reducer,
+      login : loginSlice.reducer,
     },
 });
 
