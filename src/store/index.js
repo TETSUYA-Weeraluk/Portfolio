@@ -4,6 +4,7 @@ import listMenuSlice from "./Appfood/listMenuSlice";
 import menuSlice from "./Appfood/menuSlice";
 import countrySlice from "./Country/CountrySlice";
 import loginSlice from "./LoginRegister/LoginSlice";
+import registerSlice from "./LoginRegister/RegisterSlice";
 
 const store = configureStore({
   reducer: 
@@ -13,6 +14,7 @@ const store = configureStore({
       listMenu: listMenuSlice.reducer,
       country: countrySlice.reducer,
       login : loginSlice.reducer,
+      register : registerSlice.reducer
     },
 });
 
