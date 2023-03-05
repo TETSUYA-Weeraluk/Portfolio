@@ -7,7 +7,6 @@ const RootDashBaord = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.user.isLogin);
-  const token = localStorage.getItem('user')
 
   useEffect(() => {
     const checkIsLogin = async () => {
@@ -19,7 +18,7 @@ const RootDashBaord = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ token: token }),
+            body: JSON.stringify({ token: currentUser }),
           }
         );
 
@@ -28,7 +27,7 @@ const RootDashBaord = () => {
         }
 
         const dataRes = await response.json();
-        if (dataRes.token !== token) {
+        if (dataRes.token !== currentUser) {
           navigate("/tetsuya-login");
           return;
         }
