@@ -7,10 +7,14 @@ const userSlice = createSlice({
     },
     reducers : {
         login(state,action){
-            state.isLogin = action.payload
+            localStorage.setItem(action.payload.key,action.payload.value)
+            state.isLogin = localStorage.getItem('user')
+            console.log(state.isLogin)
         },
         logout(state){
-            state.isLogin = localStorage.setItem('user',null)
+            localStorage.setItem('user',null)
+            state.isLogin = localStorage.getItem('user')
+            console.log(state.isLogin)
         }
     }
 });

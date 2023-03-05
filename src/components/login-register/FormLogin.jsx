@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userAction } from "../../store/user/user";
 
 const FormLogin = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState({
     username: "",
@@ -33,7 +36,11 @@ const FormLogin = () => {
         console.log(resdata.error);
         return;
       } else {
-        localStorage.setItem("user", resdata.token);
+        const sendData = {
+          key : 'user',
+          value : resdata.token
+        }
+        dispatch(userAction.login(sendData))
         console.log('Login Success')
         navigate("/dashboard-admin");
       }
