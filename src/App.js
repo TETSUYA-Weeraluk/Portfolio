@@ -11,6 +11,8 @@ import RootAppFood from "./pages/RootPage/RootAppFood";
 import AppFoodPage from "./pages/myProject/AppFood/AppFoodPage";
 import LoginPage from "./pages/Login_Register/LoginPage";
 import RegisterPage from "./pages/Login_Register/RegisterPage";
+import RootDashBaord from "./pages/RootPage/RootDashBaord";
+import DashBoardHomePage from "./components/DashBoard/DashBoardHomePage";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -48,6 +50,9 @@ const App = () => {
 
         { path : 'tetsuya-login' , element : <LoginPage />},
         { path : 'tetsuya-register' , element : <RegisterPage />},
+        { path : 'dashboard-admin' , element : <RootDashBaord /> , children : [
+          { index : true , element : <DashBoardHomePage />}
+        ]}
       ],
     },
   ]);

@@ -7,10 +7,6 @@ const loginSlice = createSlice({
         password : '',
     },
     reducers : {
-        submitLogin(state,action){
-            console.log(action.payload.username)
-            console.log(action.payload.password)
-        }
     }
 });
 

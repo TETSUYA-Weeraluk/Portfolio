@@ -10,11 +10,10 @@ const registerSlice = createSlice({
         email : '',
     },
     reducers : {
-        registerSubmit(state,action){
-            console.log(action.payload)
-        }
     }
 });
+
+
 
 export const registerAction = registerSlice.actions;
 

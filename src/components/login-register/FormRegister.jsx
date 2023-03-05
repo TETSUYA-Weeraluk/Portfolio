@@ -3,11 +3,9 @@ import { BiIdCard } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiIdentification } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { registerAction } from "../../store/LoginRegister/RegisterSlice";
 
 const FormRegister = () => {
-  const [stateForm, setStateForm] = useState({
+  const [data, setData] = useState({
     username: "",
     password: "",
     fname: "",
@@ -15,16 +13,38 @@ const FormRegister = () => {
     email: "",
   });
 
-  const dispatch = useDispatch();
-
   const changeHandler = (e) => {
-    setStateForm({ ...stateForm, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    dispatch(registerAction.registerSubmit(stateForm));
+    try {
+      const response = await fetch("http://localhost:7777/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request fail");
+      }
+      const resdata = await response.json();
+      console.log(resdata);
+      setData({
+        username: "",
+        password: "",
+        fname: "",
+        lname: "",
+        email: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <form>
       <div className="grid grid-cols-2 gap-5">
@@ -35,7 +55,7 @@ const FormRegister = () => {
               className="w-full bg-transparent outline-none text-black"
               type="text"
               name="username"
-              value={stateForm.username}
+              value={data.username}
               onChange={changeHandler}
             ></input>
             <BiIdCard size={20} />
@@ -48,7 +68,7 @@ const FormRegister = () => {
               className="w-full bg-transparent outline-none text-black"
               type="password"
               name="password"
-              value={stateForm.password}
+              value={data.password}
               onChange={changeHandler}
             ></input>
             <RiLockPasswordLine size={20} />
@@ -61,7 +81,7 @@ const FormRegister = () => {
               className="w-full bg-transparent outline-none text-black"
               type="text"
               name="fname"
-              value={stateForm.fname}
+              value={data.fname}
               onChange={changeHandler}
             ></input>
             <HiIdentification size={20} />
@@ -74,7 +94,7 @@ const FormRegister = () => {
               className="w-full bg-transparent outline-none text-black"
               type="text"
               name="lname"
-              value={stateForm.lname}
+              value={data.lname}
               onChange={changeHandler}
             ></input>
             <HiIdentification size={20} />
@@ -87,7 +107,7 @@ const FormRegister = () => {
               className="w-full bg-transparent outline-none text-black"
               type="email"
               name="email"
-              value={stateForm.email}
+              value={data.email}
               onChange={changeHandler}
             ></input>
             <AiOutlineMail size={20} />

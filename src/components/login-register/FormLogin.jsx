@@ -1,25 +1,51 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { loginAction } from "../../store/LoginRegister/LoginSlice";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
+  const navigate = useNavigate();
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+  });
 
-    const [stateForm , setStateForm] = useState({
-        username : '',
-        password : '',
-    });
+  const changeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
-    const dispatch = useDispatch();
- 
-    const changeHandler = (e) => {
-        setStateForm( {...stateForm,[e.target.name] : e.target.value})
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:7777/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request fail");
+      }
+
+      const resdata = await response.json();
+      if (resdata.error === "password is incorrect" || resdata.error === "User not found") {
+        console.log(resdata.error);
+        return;
+      } else {
+        localStorage.setItem("user", resdata.token);
+        console.log('Login Success')
+        navigate("/dashboard-admin");
+      }
+      setData({
+        username: "",
+        password: "",
+      });
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault()
-        dispatch(loginAction.submitLogin(stateForm))
-    }
   return (
     <>
       <form className="flex flex-col gap-2" onSubmit={onSubmitHandler}>
@@ -30,7 +56,7 @@ const FormLogin = () => {
             type="text"
             placeholder="Username"
             name="username"
-            value={stateForm.username}
+            value={data.username}
             onChange={changeHandler}
           />
         </div>
@@ -41,11 +67,14 @@ const FormLogin = () => {
             type="password"
             placeholder="Username"
             name="password"
-            value={stateForm.password}
+            value={data.password}
             onChange={changeHandler}
           />
         </div>
-        <button type="submit" className="bg-[#598253] py-2 px-4 rounded-md text-white font-bold ">
+        <button
+          type="submit"
+          className="bg-[#598253] py-2 px-4 rounded-md text-white font-bold "
+        >
           Login
         </button>
       </form>
