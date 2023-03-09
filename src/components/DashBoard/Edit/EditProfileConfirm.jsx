@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserEdit, userEditAction } from "../../../store/user/userEditSlice";
+import { userEditAction } from "../../../store/user/userEditSlice";
 
 const EditProfileConfirm = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userEditAction } from "../../../store/user/userEditSlice";
 
 const EditProfileUser = (props) => {
@@ -10,7 +10,6 @@ const EditProfileUser = (props) => {
   const [toggleEdit, settoggleEdit] = useState(false);
   const [valueInput, setValueInput] = useState(props.value);
   const dispatch = useDispatch();
-  const currentDataUser = useSelector(state=> state.userEdit.currentDataUser)
 
   const confirmPopupToggleHandler = () => {
     dispatch(userEditAction.editPopupConfirm(props));

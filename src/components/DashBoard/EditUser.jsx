@@ -7,17 +7,18 @@ import EditProfileUser from "./Edit/EditProfileUser";
 import EditRoleUser from "./Edit/EditRoleUser";
 
 const EditUser = () => {
-
-  const editPopupIsShow = useSelector(state=> state.userEdit.editPopupShow)
-  const currentDataUser = useSelector(state=> state.userEdit.currentDataUser)
-  const isLoading = useSelector(state=> state.userEdit.isLoading)
-  const error = useSelector(state=> state.userEdit.error)
+  const editPopupIsShow = useSelector((state) => state.userEdit.editPopupShow);
+  const currentDataUser = useSelector(
+    (state) => state.userEdit.currentDataUser
+  );
+  const isLoading = useSelector((state) => state.userEdit.isLoading);
+  const error = useSelector((state) => state.userEdit.error);
   const params = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() =>   {
+  useEffect(() => {
     dispatch(getUserEdit(params));
-  },[dispatch,params])
+  }, [dispatch, params]);
 
   let content = "";
 
@@ -30,20 +31,41 @@ const EditUser = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto mt-5">
-      {editPopupIsShow && <EditProfileConfirm />}
-      {isLoading && content}
-      {error && content}
-      {currentDataUser !== undefined && !isLoading && !error && (
-        <div className="w-full bg-[#252525] p-4 rounded-md flex flex-col gap-4">
-          <EditProfileUser  title="Username" value={currentDataUser.username} name='username' />
-          <EditProfileUser title="First Name" value={currentDataUser.fname} name='fname' />
-          <EditProfileUser title="Last Name" value={currentDataUser.lname} name='lname' />
-          <EditProfileUser title="Email" value={currentDataUser.email} name='email' />
-          <EditRoleUser title="Role" nameRole={currentDataUser.name_role} value={currentDataUser.id_role} name='id_role' />
-        </div>
-      )}
-    </div>
+      <div className="max-w-xl mx-auto mt-5">
+        {editPopupIsShow && <EditProfileConfirm />}
+        {isLoading && content}
+        {error && content}
+        {currentDataUser !== undefined && !isLoading && !error && (
+          <div className="w-full bg-[#252525] p-4 rounded-md flex flex-col gap-4">
+            <EditProfileUser
+              title="Username"
+              value={currentDataUser.username}
+              name="username"
+            />
+            <EditProfileUser
+              title="First Name"
+              value={currentDataUser.fname}
+              name="fname"
+            />
+            <EditProfileUser
+              title="Last Name"
+              value={currentDataUser.lname}
+              name="lname"
+            />
+            <EditProfileUser
+              title="Email"
+              value={currentDataUser.email}
+              name="email"
+            />
+            <EditRoleUser
+              title="Role"
+              nameRole={currentDataUser.name_role}
+              value={currentDataUser.id_role}
+              name="id_role"
+            />
+          </div>
+        )}
+      </div>
   );
 };
 

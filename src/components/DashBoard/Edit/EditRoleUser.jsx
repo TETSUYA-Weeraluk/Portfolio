@@ -7,7 +7,7 @@ import { fetchRole } from "../../../store/user/user";
 import { userEditAction } from "../../../store/user/userEditSlice";
 
 const EditRoleUser = (props) => {
-    const { title, value , nameRole } = props;
+    const { title , nameRole } = props;
     const [toggleEdit, settoggleEdit] = useState(false);
     const [valueInput, setValueInput] = useState(props.value);
     const allRole = useSelector(state => state.user.role)
