@@ -9,7 +9,6 @@ const ContentUser = () => {
   const currentUser = useSelector(state=>state.user.users)
 
   useEffect( () => {
-    console.log('use Effect')
     dispatch(fetchUser());
     dispatch(fetchRole());
   },[dispatch])

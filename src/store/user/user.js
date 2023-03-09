@@ -7,6 +7,7 @@ const userSlice = createSlice({
     users: [],
     role : [],
     error: null,
+    successCreatedPopup : false
   },
   reducers: {
     login(state, action) {
@@ -28,6 +29,9 @@ const userSlice = createSlice({
     setError(state, action) {
       state.error = action.payload;
     },
+    popupRegisterToggle(state){
+      state.successCreatedPopup = !state.successCreatedPopup
+    }
   },
 });
 

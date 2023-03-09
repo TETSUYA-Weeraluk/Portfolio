@@ -3,8 +3,11 @@ import { BiIdCard } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiIdentification } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { userAction } from "../../store/user/user";
 
 const FormRegister = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -32,14 +35,19 @@ const FormRegister = () => {
         throw new Error("Request fail");
       }
       const resdata = await response.json();
-      console.log(resdata);
-      setData({
-        username: "",
-        password: "",
-        fname: "",
-        lname: "",
-        email: "",
-      });
+      if(resdata === 'User already exists!'){
+        return;
+      }else{
+        setData({
+          username: "",
+          password: "",
+          fname: "",
+          lname: "",
+          email: "",
+        });
+        dispatch(userAction.popupRegisterToggle())
+      }
+      
     } catch (error) {
       console.log(error);
     }
