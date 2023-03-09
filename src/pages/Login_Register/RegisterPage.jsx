@@ -17,7 +17,7 @@ const RegisterPage = () => {
             Create new account
           </h1>
           <h2 className="text-center">
-            Already A Member? <a className="text-[#10857f]">Log in</a>
+            Already A Member? <a href="#" className="text-[#10857f]">Log in</a>
           </h2>
           <FormRegister />
         </div>

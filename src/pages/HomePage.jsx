@@ -8,6 +8,9 @@ import Aos from "aos";
 
 const HomePage = () => {
 
+  
+
+
   useEffect(() => {
     Aos.init({
       duration : 300,

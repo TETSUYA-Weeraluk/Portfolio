@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 const RootCountry = () => {
   useEffect(() => {

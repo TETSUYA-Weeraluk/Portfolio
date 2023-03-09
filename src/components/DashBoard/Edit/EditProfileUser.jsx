@@ -1,0 +1,82 @@
+import React, { useState } from "react";
+import { AiOutlineEdit } from "react-icons/ai";
+import { BiCheck } from "react-icons/bi";
+import { IoIosClose } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { userEditAction } from "../../../store/user/userEditSlice";
+
+const EditProfileUser = (props) => {
+  const { title, value } = props;
+  const [toggleEdit, settoggleEdit] = useState(false);
+  const [valueInput, setValueInput] = useState(props.value);
+  const dispatch = useDispatch();
+  const currentDataUser = useSelector(state=> state.userEdit.currentDataUser)
+
+  const confirmPopupToggleHandler = () => {
+    dispatch(userEditAction.editPopupConfirm(props));
+  };
+
+  const inputChangeDataHandler = (e) => {
+    setValueInput(e.target.value);
+    dispatch(userEditAction.inputChangeDataHandler(e.target.value));
+  };
+
+  const cancelEdit = () => {
+    setValueInput(props.value);
+    settoggleEdit(!toggleEdit);
+  };  
+
+  let classCheck = "";
+  let buttonDis = false;
+  if (valueInput === props.value) {
+    classCheck = "hover:text-[#525252] hover:cursor-not-allowed";
+    buttonDis = true;
+  }
+  return (
+    <>
+      {valueInput !== null && (
+        <div className="flex justify-between gap-5">
+          <p className="font-bold text-lg">{title}</p>
+          {toggleEdit && (
+            <div className="flex items-center border h-full">
+              <input
+                className=" bg-transparent "
+                type="text"
+                placeholder={value}
+                value={valueInput}
+                onChange={inputChangeDataHandler}
+              />
+
+              <button
+                onClick={confirmPopupToggleHandler}
+                disabled={buttonDis}
+                className={`bg-[#131313] border-l p-1` + classCheck}
+              >
+                {" "}
+                <BiCheck size={20} />
+              </button>
+              <button
+                onClick={cancelEdit}
+                className="bg-[#131313] border-l hover:text-[#ff0000] p-1"
+              >
+                {" "}
+                <IoIosClose size={20} />
+              </button>
+            </div>
+          )}
+          {!toggleEdit && (
+            <button
+              className="py-1 px-2 bg-[#131313] rounded-md flex items-center gap-3"
+              onClick={() => settoggleEdit(!toggleEdit)}
+            >
+              <span>{value}</span>
+              <AiOutlineEdit size={20} />
+            </button>
+          )}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default EditProfileUser;
