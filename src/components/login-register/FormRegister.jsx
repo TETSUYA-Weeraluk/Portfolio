@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiIdCard } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiIdentification } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { userAction } from "../../store/user/user";
+import FormInput from "./FormInput";
 
 const FormRegister = () => {
   const dispatch = useDispatch();
@@ -16,114 +17,150 @@ const FormRegister = () => {
     email: "",
   });
 
+  const [formError, setFormError] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:7777/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Request fail");
-      }
-      const resdata = await response.json();
-      if(resdata === 'User already exists!'){
-        return;
-      }else{
-        setData({
-          username: "",
-          password: "",
-          fname: "",
-          lname: "",
-          email: "",
-        });
-        dispatch(userAction.popupRegisterToggle())
-      }
-      
-    } catch (error) {
-      console.log(error);
-    }
+    setFormError(validate(data));
+    setIsSubmit(true);
   };
 
+  useEffect(() => {
+    const sendRequest = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:7777/api/users/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Request fail");
+        }
+        const resdata = await response.json();
+        if (resdata === "User already exists!") {
+          return;
+        } else {
+          setData({
+            username: "",
+            password: "",
+            fname: "",
+            lname: "",
+            email: "",
+          });
+          dispatch(userAction.popupRegisterToggle());
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (Object.keys(formError).length === 0 && isSubmit) {
+      sendRequest();
+    }
+  }, [formError]);
+
+  const validate = (value) => {
+    const errorMessage = {};
+    const emailFormat = value.email.includes("@");
+    if (!value.username) {
+      errorMessage.username = "Username is required!";
+    }
+    if (!value.password) {
+      errorMessage.password = "Password is required";
+    }
+    if (!value.fname) {
+      errorMessage.fname = "Fist name is required!";
+    }
+    if (!value.lname) {
+      errorMessage.lname = "Last name is required!";
+    }
+    if (!value.email) {
+      errorMessage.email = "Email is required!";
+    } else if (!emailFormat) {
+      errorMessage.email = "This is not a valid email format!";
+    }
+    
+    return errorMessage;
+  };
+
+  const Inputs = [
+    {
+      id: 1,
+      colspan: 2,
+      onChangeInput: changeHandler,
+      value: data.username,
+      title: "Username",
+      name: "username",
+      type: "text",
+      icon: <BiIdCard size={20} />,
+      formerror : formError.username
+    },
+    {
+      id: 2,
+      colspan: 2,
+      onChangeInput: changeHandler,
+      value: data.password,
+      title: "Password",
+      name: "password",
+      type: "password",
+      icon: <RiLockPasswordLine size={20} />,
+      formerror : formError.password
+    },
+    {
+      id: 3,
+      colspan: 1,
+      onChangeInput: changeHandler,
+      value: data.fname,
+      title: "First name",
+      name: "fname",
+      type: "text",
+      icon: <HiIdentification size={20} />,
+      formerror : formError.fname
+    },
+    {
+      id: 4,
+      colspan: 1,
+      onChangeInput: changeHandler,
+      value: data.lname,
+      title: "Last name",
+      name: "lname",
+      type: "text",
+      icon: <HiIdentification size={20} />,
+      formerror : formError.lname
+    },
+    {
+      id: 5,
+      colspan: 2,
+      onChangeInput: changeHandler,
+      value: data.email,
+      title: "Email",
+      name: "email",
+      type: "email",
+      icon: <AiOutlineMail size={20} />,
+      formerror : formError.email
+    },
+  ];
+
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <div className="grid grid-cols-2 gap-5">
-        <div className="col-span-2 py-2 px-4 bg-white/60 rounded-xl">
-          <p className=" text-xs">Username</p>
-          <div className="flex">
-            <input
-              className="w-full bg-transparent outline-none text-black"
-              type="text"
-              name="username"
-              value={data.username}
-              onChange={changeHandler}
-            ></input>
-            <BiIdCard size={20} />
-          </div>
-        </div>
-        <div className="col-span-2 py-2 px-4 bg-white/60 rounded-xl">
-          <p className=" text-xs">Password</p>
-          <div className="flex">
-            <input
-              className="w-full bg-transparent outline-none text-black"
-              type="password"
-              name="password"
-              value={data.password}
-              onChange={changeHandler}
-            ></input>
-            <RiLockPasswordLine size={20} />
-          </div>
-        </div>
-        <div className="col-span-1 py-2 px-4 bg-white/60 rounded-xl">
-          <p className=" text-xs">First name</p>
-          <div className="flex">
-            <input
-              className="w-full bg-transparent outline-none text-black"
-              type="text"
-              name="fname"
-              value={data.fname}
-              onChange={changeHandler}
-            ></input>
-            <HiIdentification size={20} />
-          </div>
-        </div>
-        <div className="col-span-1 py-2 px-4 bg-white/60 rounded-xl">
-          <p className=" text-xs">Last name</p>
-          <div className="flex">
-            <input
-              className="w-full bg-transparent outline-none text-black"
-              type="text"
-              name="lname"
-              value={data.lname}
-              onChange={changeHandler}
-            ></input>
-            <HiIdentification size={20} />
-          </div>
-        </div>
-        <div className="col-span-2 py-2 px-4 bg-white/60 rounded-xl">
-          <p className=" text-xs">Email</p>
-          <div className="flex">
-            <input
-              className="w-full bg-transparent outline-none text-black"
-              type="email"
-              name="email"
-              value={data.email}
-              onChange={changeHandler}
-            ></input>
-            <AiOutlineMail size={20} />
-          </div>
-        </div>
+        {Inputs.map((data) => (
+           <FormInput key={data.id} {...data} />
+        ))}
       </div>
+
       <button
-        onClick={onSubmitHandler}
         type="submit"
         className="py-2 px-4 rounded-md text-white font-bold bg-[#10857f] mt-4 w-full"
       >
