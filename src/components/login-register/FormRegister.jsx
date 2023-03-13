@@ -68,7 +68,7 @@ const FormRegister = () => {
     if (Object.keys(formError).length === 0 && isSubmit) {
       sendRequest();
     }
-  }, [formError]);
+  }, [formError , data , dispatch , isSubmit]);
 
   const validate = (value) => {
     const errorMessage = {};

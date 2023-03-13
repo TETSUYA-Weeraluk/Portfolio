@@ -7,7 +7,7 @@ const userSlice = createSlice({
     users: [],
     role : [],
     error: null,
-    successCreatedPopup : false
+    successCreatedPopup : false,
   },
   reducers: {
     login(state, action) {
@@ -78,6 +78,7 @@ export const fetchRole = () => {
     }
   };
 };
+
 
 export const userAction = userSlice.actions;
 export default userSlice;

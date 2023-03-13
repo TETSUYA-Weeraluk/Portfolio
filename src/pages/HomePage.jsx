@@ -8,14 +8,10 @@ import Aos from "aos";
 
 const HomePage = () => {
 
-  
-
-
   useEffect(() => {
     Aos.init({
       duration : 300,
-      
-    })
+    });
   },[])
 
   return (
@@ -28,7 +24,6 @@ const HomePage = () => {
         <AboutMe />
         <Portfolio />
       </main>
-     
     </div>
   );
 };
