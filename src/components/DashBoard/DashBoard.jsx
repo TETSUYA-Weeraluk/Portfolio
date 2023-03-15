@@ -1,19 +1,26 @@
-import React from "react";
-import ContentUser from "./ContentDB/ContentUser";
-import EditUserOverlay from "./ContentDB/ContentUser/EditUserOverlay";
-import HeaderDB from "./HeaderDB/HeaderDB";
-import Menu from "./LeftMenu/Menu";
+// import React, { useState } from "react";
+// import ContentUser from "./ContentDB/ContentUser";
+// import HeaderDB from "./HeaderDB/HeaderDB";
+// import Menu from "./LeftMenu/Menu";
 
-const DashboardUser = () => {
-  return (
-    <div className="flex h-screen">
-      <Menu />
-      <div className="w-full">
-        <HeaderDB />
-        <ContentUser />
-      </div>
-    </div>
-  );
-};
+// const DashboardUser = () => {
+//   const [menuIsShow , setMenuIsShow] = useState(false)
 
-export default DashboardUser;
+//   const menuIsShowHandler = () => {
+//     setMenuIsShow(!menuIsShow)
+//   }
+
+//   let test='fas'
+
+//   return (
+//     <div className="">
+//       <div className=" h-full">
+//         {/* { menuIsShow && <Menu />} */}
+//         <HeaderDB test={test}/>
+//         <ContentUser />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardUser;

@@ -2,17 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUserEdit } from "../../store/user/userEditSlice";
+import EditAfterConfirm from "./Edit/EditAfterConfirm";
 import EditProfileConfirm from "./Edit/EditProfileConfirm";
 import EditProfileUser from "./Edit/EditProfileUser";
 import EditRoleUser from "./Edit/EditRoleUser";
 
 const EditUser = () => {
-  const editPopupIsShow = useSelector((state) => state.userEdit.editPopupShow);
-  const currentDataUser = useSelector(
-    (state) => state.userEdit.currentDataUser
-  );
+  const editPopupIsShow = useSelector(state=> state.userEdit.editPopupShow);
+  const currentDataUser = useSelector(state=> state.userEdit.currentDataUser);
   const isLoading = useSelector((state) => state.userEdit.isLoading);
   const error = useSelector((state) => state.userEdit.error);
+  const editPopupSuccessIsShow = useSelector(state => state.userEdit.editPopupSuccess)
+
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -32,6 +33,7 @@ const EditUser = () => {
 
   return (
       <div className="max-w-xl mx-auto mt-5">
+       {editPopupSuccessIsShow && <EditAfterConfirm />}
         {editPopupIsShow && <EditProfileConfirm />}
         {isLoading && content}
         {error && content}

@@ -9,6 +9,7 @@ const userEditSlice = createSlice({
     error : null,
     isLoading : false,
     valueChange : {},
+    editPopupSuccess : false,
   },
   reducers: {
     editPopupConfirm(state,action) {
@@ -30,6 +31,10 @@ const userEditSlice = createSlice({
     inputChangeDataHandler(state,action){
         state.dataUserEdit = action.payload
     },
+    setPopupSuccess(state,action){
+      state.editPopupSuccess = action.payload
+    },
+    
   },
 });
 
@@ -66,6 +71,8 @@ export const getUserEdit = (username) => {
     }
   };
 };
+
+
 
 
 

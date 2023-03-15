@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import bearLogo from "../../../assets/bear-hat.png";
-import { AiOutlineUser } from "react-icons/ai";
-import { MdOutlineDashboard } from "react-icons/md";
+
 import { IoMdMenu } from "react-icons/io";
+import ListNav from "./ListNav";
 const Menu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const onClickShowMenu = () => {
     setShowMenu(!showMenu);
   };
   return (
-    <div className="bg-[#252525] relative h-full">
+    <div className="bg-[#252525] h-auto">
       <div className="flex items-center p-4 gap-2 ">
         <IoMdMenu size={20} color="white" onClick={onClickShowMenu} />
         {showMenu && (
@@ -22,19 +22,7 @@ const Menu = () => {
         )}
       </div>
 
-      {showMenu && (
-        <div className="p-4 text-white flex flex-col gap-5 text-lg">
-          <p className="flex items-center gap-5">
-            <MdOutlineDashboard size={25} />
-            <label>Dashboard</label>
-          </p>
-
-          <p className="flex items-center gap-5 text-[#FD7014]">
-            <AiOutlineUser size={25} />
-            <label>User</label>
-          </p>
-        </div>
-      )}
+      {showMenu && <ListNav />}
     </div>
   );
 };

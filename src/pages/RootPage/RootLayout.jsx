@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Provider, useSelector } from "react-redux";
+import React from "react";
+import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 import store from "../../store";
 

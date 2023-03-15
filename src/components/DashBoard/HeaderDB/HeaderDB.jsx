@@ -9,22 +9,23 @@ import { useDispatch } from "react-redux";
 import { userAction } from "../../../store/user/user";
 
 const HeaderDB = () => {
+  const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
   const onLogout = () => {
-    dispatch(userAction.logout())
-  }
+    dispatch(userAction.logout());
+  };
 
-  const [showMenu, setShowMenu] = useState(false);
-
-  const tiggleMenu = () => {
+  const toggleMenuUser = () => {
     setShowMenu(!showMenu);
   };
 
   return (
-    <nav className="flex bg-[#252525] text-white justify-between items-center">
-      <h2 className="flex items-center gap-2 text-3xl p-4 justify-center ">
-        USER
-      </h2>
+    <nav className="flex bg-[#252525] text-white justify-between items-center px-4">
+      <div className="flex items-center">
+        <h2 className="flex items-center gap-2 text-3xl p-4 justify-center ">
+          USER
+        </h2>
+      </div>
 
       <div className="p-2 rounded-full bg-[#131313] text-[#afafaf] flex items-center gap-2">
         <MdSearch size={20} />
@@ -41,7 +42,7 @@ const HeaderDB = () => {
         </button>
 
         <div className="border-l border-[#afafaf] relative px-2">
-          <button onClick={tiggleMenu} className=" flex items-center gap-2">
+          <button onClick={toggleMenuUser} className=" flex items-center gap-2">
             <img
               className=" w-[30px] h-[30px] rounded-full"
               src={imgUser}
@@ -59,11 +60,17 @@ const HeaderDB = () => {
               className="absolute right-0 block z-50 mt-5 mr-2 bg-[#252525] rounded-md w-11/12
           "
             >
-              <a href="#" className="flex items-center py-3 px-6 justify-between">
+              <a
+                href="#"
+                className="flex items-center py-3 px-6 justify-between"
+              >
                 Profile
                 <AiOutlineUser />
               </a>
-              <a href="#" className="flex items-center py-3 px-6 justify-between">
+              <a
+                href="#"
+                className="flex items-center py-3 px-6 justify-between"
+              >
                 Setting
                 <AiOutlineSetting />
               </a>

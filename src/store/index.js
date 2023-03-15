@@ -3,6 +3,7 @@ import cartSlice from "./Appfood/cartSlice";
 import listMenuSlice from "./Appfood/listMenuSlice";
 import menuSlice from "./Appfood/menuSlice";
 import countrySlice from "./Country/CountrySlice";
+import dataManagementSlice from "./Dashboard/DataManagement";
 import userSlice from "./user/user";
 import userEditSlice from "./user/userEditSlice";
 
@@ -15,6 +16,7 @@ const store = configureStore({
       country: countrySlice.reducer,
       user : userSlice.reducer,
       userEdit : userEditSlice.reducer,
+      dataManage : dataManagementSlice.reducer,
     },
 });
 

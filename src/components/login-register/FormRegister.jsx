@@ -51,24 +51,16 @@ const FormRegister = () => {
         if (resdata === "User already exists!") {
           return;
         } else {
-          setData({
-            username: "",
-            password: "",
-            fname: "",
-            lname: "",
-            email: "",
-          });
           dispatch(userAction.popupRegisterToggle());
         }
       } catch (error) {
         console.log(error);
       }
     };
-
     if (Object.keys(formError).length === 0 && isSubmit) {
       sendRequest();
     }
-  }, [formError , data , dispatch , isSubmit]);
+  }, [formError, data, dispatch, isSubmit]);
 
   const validate = (value) => {
     const errorMessage = {};
@@ -90,7 +82,7 @@ const FormRegister = () => {
     } else if (!emailFormat) {
       errorMessage.email = "This is not a valid email format!";
     }
-    
+
     return errorMessage;
   };
 
@@ -104,7 +96,7 @@ const FormRegister = () => {
       name: "username",
       type: "text",
       icon: <BiIdCard size={20} />,
-      formerror : formError.username
+      formerror: formError.username,
     },
     {
       id: 2,
@@ -115,7 +107,7 @@ const FormRegister = () => {
       name: "password",
       type: "password",
       icon: <RiLockPasswordLine size={20} />,
-      formerror : formError.password
+      formerror: formError.password,
     },
     {
       id: 3,
@@ -126,7 +118,7 @@ const FormRegister = () => {
       name: "fname",
       type: "text",
       icon: <HiIdentification size={20} />,
-      formerror : formError.fname
+      formerror: formError.fname,
     },
     {
       id: 4,
@@ -137,7 +129,7 @@ const FormRegister = () => {
       name: "lname",
       type: "text",
       icon: <HiIdentification size={20} />,
-      formerror : formError.lname
+      formerror: formError.lname,
     },
     {
       id: 5,
@@ -148,7 +140,7 @@ const FormRegister = () => {
       name: "email",
       type: "email",
       icon: <AiOutlineMail size={20} />,
-      formerror : formError.email
+      formerror: formError.email,
     },
   ];
 
@@ -156,7 +148,7 @@ const FormRegister = () => {
     <form onSubmit={onSubmitHandler}>
       <div className="grid grid-cols-2 gap-5">
         {Inputs.map((data) => (
-           <FormInput key={data.id} {...data} />
+          <FormInput key={data.id} {...data} />
         ))}
       </div>
 

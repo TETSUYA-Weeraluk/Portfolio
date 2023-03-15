@@ -14,6 +14,7 @@ import RegisterPage from "./pages/Login_Register/RegisterPage";
 import RootDashBaord from "./pages/RootPage/RootDashBaord";
 import DashboardEditUser from "./pages/DashboardAdmin/DashboardEditUser";
 import DashBoardHomePage from "./pages/DashboardAdmin/DashboardHomePage";
+import DashboardDataManagement from "./pages/DashboardAdmin/DashboardDataManagement";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -53,7 +54,8 @@ const App = () => {
         { path : 'tetsuya-register' , element : <RegisterPage />},
         { path : 'dashboard-admin' , element : <RootDashBaord /> , children : [
           { index : true , element : <DashBoardHomePage />},
-          { path : ':username', element : <DashboardEditUser />}
+          { path : 'datamanament' , element : <DashboardDataManagement />},
+          { path : 'edit/:username', element : <DashboardEditUser />}
           
         ]}
       ],

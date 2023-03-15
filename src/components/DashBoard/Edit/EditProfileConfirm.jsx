@@ -37,6 +37,7 @@ const EditProfileConfirm = () => {
     try {
       const resData = await updateDataUser(data);
       dispatch(userEditAction.replaceDataUser(resData))
+      dispatch(userEditAction.setPopupSuccess(true))
     } catch (error) {
       console.log(error);
     }

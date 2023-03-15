@@ -34,7 +34,7 @@ const ListNav = () => {
       }
     };
     checkUser();
-  }, []);
+  }, [currentUser]);
 
   const listItemNav = [
     { id: 1, to: "/", title: "Home" },
