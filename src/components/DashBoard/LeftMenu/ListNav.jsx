@@ -4,7 +4,8 @@ import ListItemNav from "./ListItemNav";
 
 const ListNav = () => {
     const listItemNav = [
-        {
+        {   
+
             to : '/dashboard-admin',
             title : 'User'
         },
@@ -21,7 +22,7 @@ const ListNav = () => {
       </p>
 
       {listItemNav.map( (item) => (
-        <ListItemNav data={item}/>
+        <ListItemNav key={item.title} data={item}/>
       ))}
     </div>
   );

@@ -8,7 +8,7 @@ const DashboardDataManagement = () => {
 
   useEffect( () => {
     dispatch(getAllDataManagement());
-  },[])
+  },[dispatch])
 
   return (
     <ContentDataManagement />
