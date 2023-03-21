@@ -1,8 +1,8 @@
 import React from "react";
-import DataManageAboutMe from "./ContentDataManage/DataManageAboutMe";
-import DataManageHero from "./ContentDataManage/DataManageHero";
-import DataManagePortfolio from "./ContentDataManage/DataManagePortfolio";
-import DataManageSkill from "./ContentDataManage/DataManageSkill";
+import DataManageAboutMe from "./ContentDataManage/AboutMe/DataManageAboutMe";
+import DataManageSkill from "./ContentDataManage/AboutMe/DataManageSkill";
+import DataManageHero from "./ContentDataManage/Hero/DataManageHero";
+import DataManagePortfolio from "./ContentDataManage/Portfolio/DataManagePortfolio";
 
 const ContentDataManagement = () => {
   return (

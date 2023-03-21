@@ -4,29 +4,30 @@ import { updateDataManagement } from "../../../../../store/Dashboard/DataManagem
 import ButtonCancelChangeData from "../ButtonCancelChangeData";
 import ButtonChangeData from "../ButtonChangeData";
 import ButtonConfirmChange from "../ButtonConfirmChange";
-const HeroTitle = (props) => {
-  const { title, id_hero, descriptions } = props.data;
-  const [showInputChang, setShowInputChang] = useState(false);
-  const [valueInput, setValueInput] = useState(descriptions);
 
+const EducationItem = (props) => {
+  const title = props.title;
+  const descriptions = props.descriptions;
+  const id = props.id;
+  const [showInPutChange, setShowInPutChange] = useState(false);
+  const [valueInput, setValueInput] = useState(props.descriptions);
   const dispatch = useDispatch();
 
   const confirmChangeDataHandler = () => {
     const data = {
-      table: "hero",
-      title: "descriptions",
+      table: "education",
+      title: title,
       value: valueInput,
-      id_table: "id_hero",
-      id: id_hero,
+      id_table: "id_education",
+      id: id,
     };
     dispatch(updateDataManagement(data));
-    setShowInputChang(false);
+    setShowInPutChange(false);
   };
 
   return (
-    <div className="">
-      <span>{title} : </span>
-      {showInputChang ? (
+    <div className="flex gap-2">
+      {showInPutChange ? (
         <>
           <input
             className=" bg-transparent border px-2 w-1/2"
@@ -37,16 +38,16 @@ const HeroTitle = (props) => {
           <ButtonConfirmChange
             confirmChangeDataHandler={confirmChangeDataHandler}
           />
-          <ButtonCancelChangeData showInput={setShowInputChang} />
+          <ButtonCancelChangeData showInput={setShowInPutChange} />
         </>
       ) : (
         <>
-          <span className="mr-2">{descriptions}</span>
-          <ButtonChangeData showInput={setShowInputChang} />
+          <span>{descriptions}</span>
+          <ButtonChangeData showInput={setShowInPutChange} />
         </>
       )}
     </div>
   );
 };
 
-export default HeroTitle;
+export default EducationItem;
