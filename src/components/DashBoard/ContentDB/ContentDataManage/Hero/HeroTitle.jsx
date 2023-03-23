@@ -23,30 +23,62 @@ const HeroTitle = (props) => {
     setShowInputChang(false);
   };
 
-  return (
-    <div className="">
-      <span>{title} : </span>
-      {showInputChang ? (
-        <>
-          <input
-            className=" bg-transparent border px-2 w-1/2"
-            type="text"
-            value={valueInput}
-            onChange={(e) => setValueInput(e.target.value)}
-          />
-          <ButtonConfirmChange
-            confirmChangeDataHandler={confirmChangeDataHandler}
-          />
-          <ButtonCancelChangeData showInput={setShowInputChang} />
-        </>
-      ) : (
-        <>
-          <span className="mr-2">{descriptions}</span>
-          <ButtonChangeData showInput={setShowInputChang} />
-        </>
-      )}
-    </div>
-  );
+  let content;
+
+  if (title === "Image_hero") {
+    content = (
+      <>
+        <img className="w-[300px] mb-2" src={valueInput} alt="" />
+        <span>{title} : </span>
+        {showInputChang ? (
+          <>
+            <input
+              className=" bg-transparent border px-2 w-1/2"
+              type="text"
+              value={valueInput}
+              onChange={(e) => setValueInput(e.target.value)}
+            />
+            <ButtonConfirmChange
+              confirmChangeDataHandler={confirmChangeDataHandler}
+            />
+            <ButtonCancelChangeData showInput={setShowInputChang} />
+          </>
+        ) : (
+          <>
+            <span className="mr-2">{descriptions}</span>
+            <ButtonChangeData showInput={setShowInputChang} />
+          </>
+        )}
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <span>{title} : </span>
+        {showInputChang ? (
+          <>
+            <input
+              className=" bg-transparent border px-2 w-1/2"
+              type="text"
+              value={valueInput}
+              onChange={(e) => setValueInput(e.target.value)}
+            />
+            <ButtonConfirmChange
+              confirmChangeDataHandler={confirmChangeDataHandler}
+            />
+            <ButtonCancelChangeData showInput={setShowInputChang} />
+          </>
+        ) : (
+          <>
+            <span className="mr-2">{descriptions}</span>
+            <ButtonChangeData showInput={setShowInputChang} />
+          </>
+        )}
+      </>
+    );
+  }
+
+  return <li>{content}</li>;
 };
 
 export default HeroTitle;

@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import store from "../../store";
 
 const RootLayout = () => {
+  
   return (
     <Provider store={store}>
       <main>

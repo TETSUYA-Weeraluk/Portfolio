@@ -4,6 +4,7 @@ import listMenuSlice from "./Appfood/listMenuSlice";
 import menuSlice from "./Appfood/menuSlice";
 import countrySlice from "./Country/CountrySlice";
 import dataManagementSlice from "./Dashboard/DataManagement";
+import homePageSlice from "./HomeStore/HomePageSlice";
 import userSlice from "./user/user";
 import userEditSlice from "./user/userEditSlice";
 
@@ -17,6 +18,7 @@ const store = configureStore({
       user : userSlice.reducer,
       userEdit : userEditSlice.reducer,
       dataManage : dataManagementSlice.reducer,
+      homePageData : homePageSlice.reducer
     },
 });
 

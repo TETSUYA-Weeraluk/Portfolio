@@ -120,6 +120,7 @@ export const fetchRole = () => {
   };
 };
 
+
 export const deleteUser = (id) => {
   return async (dispatch) => {
       const sendRequest = async () => {

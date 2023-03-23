@@ -60,24 +60,21 @@ const HeaderDB = () => {
               className="absolute right-0 block z-50 mt-5 mr-2 bg-[#252525] rounded-md w-11/12
           "
             >
-              <a
+              <p
                 href="#"
                 className="flex items-center py-3 px-6 justify-between"
               >
                 Profile
                 <AiOutlineUser />
-              </a>
-              <a
-                href="#"
-                className="flex items-center py-3 px-6 justify-between"
-              >
+              </p>
+              <p className="flex items-center py-3 px-6 justify-between">
                 Setting
                 <AiOutlineSetting />
-              </a>
-              <a className="flex items-center py-3 px-6 justify-between border-t border-[#afafaf]">
+              </p>
+              <p className="flex items-center py-3 px-6 justify-between border-t border-[#afafaf]">
                 <button onClick={onLogout}>Logout</button>
                 <IoMdExit />
-              </a>
+              </p>
             </div>
           )}
         </div>

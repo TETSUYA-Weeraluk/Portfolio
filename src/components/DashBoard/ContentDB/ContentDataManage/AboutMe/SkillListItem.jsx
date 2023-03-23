@@ -28,7 +28,7 @@ const SkillListItem = (props) => {
     <div className="flex flex-col gap-3 items-center mx-auto w-full">
       {showInputChange ? (
         <>
-          <img className="h-[50px]" src={valueInput} border="0" />
+          <img className="h-[50px]" src={valueInput} alt={valueInput} border="0" />
           <input
             className=" bg-transparent border px-2 w-full"
             type="text"
@@ -44,7 +44,7 @@ const SkillListItem = (props) => {
         </>
       ) : (
         <>
-          <img className="h-[50px]" src={valueInput} border="0" />
+          <img className="h-[50px]" src={valueInput} alt={valueInput} border="0" />
           <ButtonChangeData showInput={setShowInputChange} />
         </>
       )}

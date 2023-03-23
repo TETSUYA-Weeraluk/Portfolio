@@ -1,29 +1,49 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const HeroRight = () => {
+  const dataHero = useSelector((state) => state.homePageData.data.hero);
+  let title;
+  let Sub_title;
+  let descriptions;
+  if (dataHero) {
+    title = dataHero.filter((data) => data.title === "title");
+    Sub_title = dataHero.filter((data) => data.title === "sub_title");
+    descriptions = dataHero.filter(
+      (data) =>
+        data.title !== "image_hero" &&
+        data.title !== "title" &&
+        data.title !== "sub_title"
+    );
+  }
   return (
     <div>
-      <h2 className="font-bold text-lg">HI THERE !!!</h2>
-      <h1 className="font-bold text-xl text-[#C4FFDD]">
-        My name's Weeraluk Sopapan
-      </h1>
-      <h3>
-        Nickname : Tee, I graduated from Bangkok University. Computer Science,
-        Bachelor of Information Technology and Innovation.
-      </h3>
-      <br></br>
-      <h3>
-        Currently, I don't have work experience. I'm interested in Front-end
-        Developer position and use Javascript framework : ReactJS , CSS
-        Framework : Tailwind , Bootstrap
-      </h3>
-
-      <div className="mt-4">
-        <Link to='project' smooth="true" className="px-4 py-2 font-bold rounded-md bg-[#113A5D] hover:bg-white hover:text-[#062743]">
-          My project
-        </Link>
-      </div>
+      {title && Sub_title && (
+        <>
+          <p className="font-bold text-lg">{title[0].descriptions}</p>
+          <p className="font-bold text-xl text-[#C4FFDD]">
+            {Sub_title[0].descriptions}
+          </p>
+          <br />
+          {descriptions &&
+            descriptions.map((data, index) => (
+              <div key={index}>
+                <p>{data.descriptions}</p>
+                <br></br>
+              </div>
+            ))}
+          <div className="mt-4">
+            <Link
+              to="project"
+              smooth="true"
+              className="px-4 py-2 font-bold rounded-md bg-[#113A5D] hover:bg-white hover:text-[#062743]"
+            >
+              My project
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };

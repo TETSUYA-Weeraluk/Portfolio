@@ -4,15 +4,15 @@ const dataManagementSlice = createSlice({
   name: "dataManage",
   initialState: {
     data: [],
-    error : null,
+    error: null,
   },
   reducers: {
     replaceData(state, action) {
       state.data = action.payload;
     },
-    setError(state,action){
-        state.error = action.payload
-    }
+    setError(state, action) {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -60,17 +60,16 @@ export const updateDataManagement = (data) => {
 
     try {
       const data = await sendRequest();
-      if(data.error !== undefined){
-            dispatch(dataManageAction.setError(data.error))
-        }else{
-              dispatch(dataManageAction.replaceData(data))
-        }
+      if (data.error !== undefined) {
+        dispatch(dataManageAction.setError(data.error));
+      } else {
+        dispatch(dataManageAction.replaceData(data));
+      }
     } catch (error) {
       console.log(error);
     }
   };
 };
-
 
 
 
